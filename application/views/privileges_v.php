@@ -256,6 +256,14 @@
                     </li>
 					
 					<li class="list-group-item">
+                         Add and remove Locations
+                        <div class="material-switch pull-right">
+                            <input id="locations" name="locations" value="1" <?php if ($pri[0]['p_location']==1){echo "checked";}?> type="checkbox"/>
+                            <label for="locations" class="label-primary"></label>
+                        </div>
+                    </li>
+
+					  <li class="list-group-item">
                          Add/Remove Departments
                         <div class="material-switch pull-right">
                             <input id="depart" name="depart" value="1" <?php if ($pri[0]['p_departments']==1){echo "checked";}?> type="checkbox"/>
@@ -276,111 +284,10 @@
 				</div> <!-- End-->
 				
 				
-				<div class="panel panel-default">
-			  <div class="panel-heading">Ticket System</div>
-			  <div class="panel-body">
-			   <div class="col-sm-9 nopadding"  style="padding-left:25%;">
-			   
-			   	<li class="list-group-item">
-                        Open Ticket
-                        <div class="material-switch pull-right">
-                            <input id="openticket" name="openticket" value="1" <?php if ($pri[0]['p_open_ticket']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="openticket" class="label-primary"></label>
-                        </div>
-                    </li>
-					<li class="list-group-item">
-                        View Tickets
-                        <div class="material-switch pull-right">
-                            <input id="viewtickets" name="viewtickets" value="1" <?php if ($pri[0]['p_view_tickets']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="viewtickets" class="label-primary"></label>
-                        </div>
-                    </li>
-					
-					 <li class="list-group-item">
-                         Assign to see his/her tickets only
-                        <div class="material-switch pull-right">
-                            <input id="cust_tickets" name="cust_tickets" value="1" <?php if ($pri[0]['p_view_cust_tickets']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="cust_tickets" class="label-primary"></label>
-                        </div>
-                    </li>
-					
-					
-					<li class="list-group-item">
-                        Ticket Cases
-                        <div class="material-switch pull-right">
-                            <input id="tickectcases" name="tickectcases" value="1" <?php if ($pri[0]['p_ticket_cases']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="tickectcases" class="label-primary"></label>
-                        </div>
-                    </li>
-					
-					
-			  </div>
-			  </div>
-			</div> <!-- end -->
+				
 			
 			<div class="panel panel-default">
-		  <div class="panel-heading">Tasks And Activities</div>
-		  <div class="panel-body">
-		  <div class="col-sm-9 nopadding"  style="padding-left:25%;">
-		  <li class="list-group-item">
-                        Completed Task
-                        <div class="material-switch pull-right">
-                            <input id="newtask" name="newtask" value="1" <?php if ($pri[0]['p_new_task']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="newtask" class="label-primary"></label>
-                        </div>
-                    </li>
-					<li class="list-group-item">
-                        Assign\Display Tasks
-						<br>[Display His/Her Tasks Only - Use The Next Privilege To grant him assign a task to another user ]
-                        <div class="material-switch pull-right">
-                            <input id="easyshare" name="easyshare" value="1" <?php if ($pri[0]['p_easy_share']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="easyshare" class="label-primary"></label>
-                        </div>
-                    </li>
-					
-					<li class="list-group-item">
-                       Diaplay All Assigned User Tasks
-                        <div class="material-switch pull-right">
-                            <input id="seealltasks" name="seealltasks" value="1" <?php if ($pri[0]['p_cust_task']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="seealltasks" class="label-primary"></label>
-                        </div>
-                    </li>
-					
-					<li class="list-group-item">
-                        Assign Task To Another user
-                        <div class="material-switch pull-right">
-                            <input id="asstask" name="asstask" value="1" <?php if ($pri[0]['p_assign_task']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="asstask" class="label-primary"></label>
-                        </div>
-                    </li>
-					
-					<li class="list-group-item">
-                        Add And Remove Service
-                        <div class="material-switch pull-right">
-                            <input id="newservice" name="newservice" value="1" <?php if ($pri[0]['p_new_service']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="newservice" class="label-primary"></label>
-                        </div>
-                    </li>
-					<li class="list-group-item">
-                        Activity Report 
-                        <div class="material-switch pull-right">
-                            <input id="actvityreport" name="actvityreport" value="1" <?php if ($pri[0]['p_activity_report']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="actvityreport" class="label-primary"></label>
-                        </div>
-                    </li>
-					<li class="list-group-item">
-                        Assign to sees his/her Activity Report only
-                        <div class="material-switch pull-right">
-                            <input id="custtask" name="custtask" value="1" <?php if ($pri[0]['p_cust_activity_report']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="custtask" class="label-primary"></label>
-                        </div>
-                    </li>
 		  
-		  </div>
-		  </div>
-		</div>
-
-
 				<div class="btn-group" style="padding-left:40%">
 				<button type="submit" class="btn btn-primary center-block">Save</button>
 				<button type="submit" name = "cancel" class="btn btn-warning">cancel</button>

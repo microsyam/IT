@@ -4,13 +4,25 @@ Class Departments extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('departments_m','m');
-		$this->load->model('user');
+		if($this->session->userdata('logged_in')){
+			$this->load->model('departments_m','m');
+			$this->load->model('user');
+		}
+		else{
+			redirect('Login','refresh');
+		}
+
 	}
 
 
 
 	function index(){
+		$perm=$this->user->get_permisstion();
+		if($perm[0]['p_departments']!=1){
+			redirect('NotAuth','refresh');
+			die();
+		}
+
 		$this->load->view('departments_v',array(
 			'priv'=>$this->user->get_permisstion(),
 			'userdata'=>$this->user->userdata(),
@@ -89,8 +101,8 @@ Class Departments extends CI_Controller{
 		echo json_encode($msg);
 	}
 
-	public function deleteLocation(){
-		$result = $this->m->deleteLocation();
+	public function deleteDepartment(){
+		$result = $this->m->deleteDepartment();
 		$msg['success'] = false;
 		if($result){
 			$msg['success'] = true;

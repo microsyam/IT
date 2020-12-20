@@ -41,25 +41,14 @@ class Privileges_m extends CI_Model{
             }
 			
 			$data=array(
-			'p_new_task'=>$this->input->post('newtask'),
-			'p_new_service'=>$this->input->post('newservice'),
-			'p_activity_report'=>$this->input->post('actvityreport'),
 			'p_privilages'=>$this->input->post('Privileges'),
-			'p_easy_share'=>$this->input->post('easyshare'),
-			'p_cust_activity_report'=>$this->input->post('custtask'),
 			'p_view_computers'=>$this->input->post('viewcomputers'),
-			'p_open_ticket'=>$this->input->post('openticket'),
-			'p_view_tickets'=>$this->input->post('viewtickets'),
-			'p_view_cust_tickets'=>$this->input->post('cust_tickets'),
-			'p_ticket_cases'=>$this->input->post('tickectcases'),
 			'p_edit_computer'=>$this->input->post('editcomputer'),
 			'p_add_computer'=>$this->input->post('newcomputer'),
 			'p_edit_user'=>$this->input->post('edituser'),
 			'p_add_user'=>$this->input->post('createuser'),
 			'p_departments'=>$this->input->post('depart'),
 			'p_general'=>$this->input->post('settings'),
-			'p_assign_task'=>$this->input->post('asstask'),
-			'p_cust_task'=>$this->input->post('seealltasks'),
 			'p_warehouses'=>$this->input->post('warehouses'),
 			'p_manage_items'=>$this->input->post('item'),
 			'p_make_transaction'=>$this->input->post('stocktrans'),
@@ -72,6 +61,7 @@ class Privileges_m extends CI_Model{
 			'p_operation '=>$this->input->post('Operations'),
 			'p_op_class '=>$this->input->post('OpClass'),
 			'p_gift_redeem '=>$this->input->post('giftcards'),
+			'p_location '=>$this->input->post('locations'),
 			);
 
 		$this->db->where('p_u_id',$this->input->post('select_user'));

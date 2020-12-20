@@ -11,6 +11,11 @@ Class Locations extends CI_Controller{
 
 
 	function index(){
+		$perm=$this->user->get_permisstion();
+		if($perm[0]['p_location']!=1){
+			redirect('NotAuth','refresh');
+			die();
+		}
 		$this->load->view('locations_v',array(
 			'priv'=>$this->user->get_permisstion(),
 			'userdata'=>$this->user->userdata(),

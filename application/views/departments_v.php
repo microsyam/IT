@@ -121,7 +121,7 @@
 					<div class="input-group">
 
 						<span class="input-group-addon">Search</span>
-						<input type="text" name="search_text" id="search_text" placeholder="Branch Name" class="form-control" />
+						<input type="text" name="search_text" id="search_text" placeholder="Search by department" class="form-control" />
 					</div>
 				</div>
 				<br />
@@ -271,13 +271,13 @@
 					type: 'ajax',
 					method: 'get',
 					async: false,
-					url: '<?php echo base_url() ?>Locations/deleteLocation',
+					url: '<?php echo base_url() ?>Departments/deleteDepartment',
 					data:{id:id},
 					dataType: 'json',
 					success: function(response){
 						if(response.success){
 							$('#deleteModal').modal('hide');
-							$('.alert-success').html('Location Deleted successfully').fadeIn().delay(4000).fadeOut('slow');
+							$('.alert-success').html('Department Deleted successfully').fadeIn().delay(4000).fadeOut('slow');
 							load_data();
 						}else{
 							alert('Error');

@@ -342,13 +342,14 @@
 			success: function(data){
 				$('input[name=txtLocationName]').val(data.loc_name);
 				$('input[name=txtLocationCode]').val(data.loc_code);
-				$('input[name=brand]').val(data.loc_brand);
-				$('input[name=region]').val(data.loc_region);
-				$('input[name=district]').val(data.loc_district);
-				$('input[name=type]').val(data.loc_type);
+				$('select[name=brand]').val(data.loc_brand);
+				$('select[name=region]').val(data.loc_region);
+				$('select[name=district]').val(data.loc_district);
+				$('select[name=type]').val(data.loc_type);
 				$('input[name=openingdate]').val(data.loc_opening_date);
 				$('input[name=phone]').val(data.loc_number);
 				$('input[name=txtId]').val(data.loc_id);
+				$('.selectpicker').selectpicker('refresh');
 			},
 			error: function(){
 				alert('Could not Edit Data');

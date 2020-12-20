@@ -76,36 +76,7 @@
                             <a href="<?php echo base_url();?>Dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
 						
-						<?php if($priv[0]['p_easy_share']+$priv[0]['p_new_task']+$priv[0]['p_new_service']+$priv[0]['p_activity_report']!==0 ):?>
-							<li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i>Tasks and activities<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-							<?php if($priv[0]['p_easy_share']==1):?>
-                       <li>
-                            <a href="<?php echo base_url();?>AssignTask"><i class="glyphicon glyphicon-pencil"></i><?php if($priv[0]['p_assign_task']==1){echo " Assign Task";}else{echo " My Tasks";}?></a>
-                        </li>
-						<?php endif;?>
-                        <?php if($priv[0]['p_new_task']==1):?>
-                        <li>
-                            <a href="<?php echo base_url();?>CompletedTask"><i class="fa fa-edit fa-fw"></i>Completed task </a>
-                        </li>
-						<?php endif;?>
-						<?php if($priv[0]['p_new_service']==1):?>
-						<li>
-                            <a href="<?php echo base_url();?>NewService"><i class="fa fa-sitemap fa-fw"></i>Services</a>
-                        </li>
-						<?php endif;?>
 						
-						<?php if($priv[0]['p_activity_report']==1):?>
-                                <li>
-                                    <a  href="<?php echo base_url();?>ActivityReports">Activity report</a>
-                                </li>
-								<?php endif;?>
-								
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-						<?php endif;?>
 
                     <?php if($priv[0]['p_view_computers']+$priv[0]['p_add_computer']+$priv[0]['p_edit_computer']!==0):?>
 						<li>
@@ -203,32 +174,9 @@
 						
 						<?php endif;?>
 						
-						<?php if($priv[0]['p_open_ticket']+$priv[0]['p_view_tickets']+$priv[0]['p_ticket_cases']!==0):?>
-						<li>
-                            <a href="#"><i class="glyphicon glyphicon-question-sign fa-fw"></i>Tickets<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-							<?php if($priv[0]['p_open_ticket']==1):?>
-                                <li>
-                                    <a  href="<?php echo base_url();?>OpenTicket">Open a ticket</a>
-                                </li>
-								<?php endif;?>
-								<?php if($priv[0]['p_view_tickets']==1):?>
-								<li>
-                                    <a  href="<?php echo base_url();?>ViewTickets">View tickets</a>
-                                </li>
-								<?php endif;?>
-								<?php if($priv[0]['p_ticket_cases']==1):?>
-								<li>
-                                    <a  href="<?php echo base_url();?>Cases">Ticket cases</a>
-                                </li>
-								<?php endif;?>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
 						
-						<?php endif;?>
 						
-						<?php if($priv[0]['p_add_user']+$priv[0]['p_edit_user']+$priv[0]['p_privilages']+$priv[0]['p_departments']+$priv[0]['p_general']+$priv[0]['p_warehouses']+$priv[0]['p_vendors']+$priv[0]['p_op_class']!==0):?>
+						<?php if($priv[0]['p_add_user']+$priv[0]['p_edit_user']+$priv[0]['p_privilages']+$priv[0]['p_departments']+$priv[0]['p_general']+$priv[0]['p_warehouses']+$priv[0]['p_vendors']+$priv[0]['p_op_class']+$priv[0]['p_location']!==0):?>
 						  
 						<li>
                             <a href="#"><i class="	glyphicon glyphicon-cog"></i>System Settings<span class="fa arrow"></span></a>
@@ -246,6 +194,12 @@
 								<?php if($priv[0]['p_privilages']==1):?>
 								<li>
                                     <a  href="<?php echo base_url();?>Privileges">Privileges</a>
+                                </li>
+								<?php endif;?>
+
+								<?php if($priv[0]['p_location']==1):?>
+								<li>
+                                    <a  href="<?php echo base_url();?>Locations">Locations</a>
                                 </li>
 								<?php endif;?>
 								<?php if($priv[0]['p_warehouses']==1):?>

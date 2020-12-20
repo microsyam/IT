@@ -61,10 +61,10 @@ class departments_m extends CI_Model{
 			}
 		}
 
-		function deleteLocation(){
+		function deleteDepartment(){
 			$id = $this->input->get('id');
-			$this->db->where('loc_id', $id);
-			$this->db->update('locations',array('loc_display'=>"0"));
+			$this->db->where('d_id', $id);
+			$this->db->update('departments',array('d_display'=>"0"));
 			if($this->db->affected_rows() > 0){
 				return true;
 			}else{
