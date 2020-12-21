@@ -18,6 +18,7 @@ class departments_m extends CI_Model{
 	function getLocations(){
 		$this->db->select('*');
 		$this->db->from('locations');
+		$this->db->where('loc_display',1);
 		$data=$this->db->get();
 		return $data->result();
 	}
