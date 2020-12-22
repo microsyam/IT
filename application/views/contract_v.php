@@ -265,7 +265,10 @@
 
 						<span class="input-group-addon">Search</span>
 						<input type="text" name="search_text" id="search_text" placeholder="Search by Location" class="form-control" />
-
+						<select  class="selectpicker" required data-show-subtext="true" data-live-search="true" name="filter">
+							<option value="brancha">Branch Name</option>
+							<option value="owner">owner</option>
+						</select>
 					</div>
 				</div>
 				<br />
@@ -293,12 +296,12 @@
 	$(function(){
 
 		load_data();
-		function load_data(query,lic)
+		function load_data(query,filter)
 		{
 			$.ajax({
 				url:"<?php echo base_url(); ?>Contract/fetch",
 				method:"POST",
-				data:{query:query,lic:lic},
+				data:{query:query,filter:filter},
 				success:function(data){
 					$('#result').html(data);
 				}
@@ -307,9 +310,10 @@
 
 		$('#search_text').keyup(function(){
 			var search = $(this).val();
+			var filter = $('select[name=filter]').val();
 			if(search != '')
 			{
-				load_data(search);
+				load_data(search,filter);
 			}
 			else
 			{
@@ -358,12 +362,12 @@
 				regirst.parent().parent().removeClass('has-error');
 				result +='2';
 			}
-			if(modeification.val()==''){
+			/*if(modeification.val()==''){
 				modeification.parent().parent().addClass('has-error');
 			}else{
 				modeification.parent().parent().removeClass('has-error');
 				result +='3';
-			}
+			}*/
 			if(tax.val()==''){
 				tax.parent().parent().addClass('has-error');
 			}else{
@@ -376,18 +380,18 @@
 				comreg.parent().parent().removeClass('has-error');
 				result +='5';
 			}
-			if(vat.val()==''){
+			/*if(vat.val()==''){
 				vat.parent().parent().addClass('has-error');
 			}else{
 				vat.parent().parent().removeClass('has-error');
 				result +='6';
-			}
-			if(vatno.val()==''){
+			}*/
+			/*if(vatno.val()==''){
 				vatno.parent().parent().addClass('has-error');
 			}else{
 				vatno.parent().parent().removeClass('has-error');
 				result +='7';
-			}
+			}*/
 			if(follower.val()==''){
 				follower.parent().parent().addClass('has-error');
 			}else{
@@ -412,12 +416,12 @@
 				rentend.parent().parent().removeClass('has-error');
 				result +='11';
 			}
-			if(rentcost.val()==''){
+			/*if(rentcost.val()==''){
 				rentcost.parent().parent().addClass('has-error');
 			}else{
 				rentcost.parent().parent().removeClass('has-error');
 				result +='12';
-			}
+			}*/
 			if(elect.val()==''){
 				elect.parent().parent().addClass('has-error');
 			}else{
@@ -430,37 +434,37 @@
 				copy.parent().parent().removeClass('has-error');
 				result +='14';
 			}
-			if(branchno.val()==''){
+			/*if(branchno.val()==''){
 				branchno.parent().parent().addClass('has-error');
 			}else{
 				branchno.parent().parent().removeClass('has-error');
 				result +='15';
-			}
-			if(ownername.val()==''){
+			}*/
+			/*if(ownername.val()==''){
 				ownername.parent().parent().addClass('has-error');
 			}else{
 				ownername.parent().parent().removeClass('has-error');
 				result +='16';
-			}
-			if(ownerno.val()==''){
+			}*/
+			/*if(ownerno.val()==''){
 				ownerno.parent().parent().addClass('has-error');
 			}else{
 				ownerno.parent().parent().removeClass('has-error');
 				result +='17';
-			}
-			if(note.val()==''){
+			}*/
+			/*if(note.val()==''){
 				note.parent().parent().addClass('has-error');
 			}else{
 				note.parent().parent().removeClass('has-error');
 				result +='18';
-			}
-			if(realesttax.val()==''){
+			}*/
+			/*if(realesttax.val()==''){
 				realesttax.parent().parent().addClass('has-error');
 			}else{
 				realesttax.parent().parent().removeClass('has-error');
 				result +='19';
-			}
-			if(result=='12345678910111213141516171819') {
+			}*/
+			if(result=='12458910111314') {
 				$.ajax({
 					type: 'ajax',
 					method: 'post',

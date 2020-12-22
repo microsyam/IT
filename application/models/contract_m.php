@@ -1,7 +1,7 @@
 <?php
 class contract_m extends CI_Model{
 
-	function fetch_data($query)
+	function fetch_data($query,$filter)
 	{
 		$this->db->select('*');
 		$this->db->from('legal');
@@ -10,7 +10,11 @@ class contract_m extends CI_Model{
 
 		if($query != '')
 		{
+			if($filter=='brancha'){
 			$this->db->like('loc_name', $query);
+			}elseif ($filter=='owner'){
+				$this->db->like('leg_owner_name', $query);
+			}
 		}
 		$this->db->order_by('leg_id', 'DESC');
 		return $this->db->get();

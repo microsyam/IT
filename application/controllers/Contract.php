@@ -36,11 +36,13 @@ Class Contract extends CI_Controller{
 	{
 		$output = '';
 		$query = '';
+		$filter = '';
 		if($this->input->post('query'))
 		{
 			$query = $this->input->post('query');
+			$filter = $this->input->post('filter');
 		}
-		$data = $this->m->fetch_data($query);
+		$data = $this->m->fetch_data($query,$filter);
 		$output .= '
 		<div class="table-responsive">
 					<table class="table table-bordered table-striped">
