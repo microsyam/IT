@@ -265,6 +265,7 @@
 
 						<span class="input-group-addon">Search</span>
 						<input type="text" name="search_text" id="search_text" placeholder="Search by Location" class="form-control" />
+
 					</div>
 				</div>
 				<br />
@@ -292,12 +293,12 @@
 	$(function(){
 
 		load_data();
-		function load_data(query)
+		function load_data(query,lic)
 		{
 			$.ajax({
 				url:"<?php echo base_url(); ?>Contract/fetch",
 				method:"POST",
-				data:{query:query},
+				data:{query:query,lic:lic},
 				success:function(data){
 					$('#result').html(data);
 				}
@@ -500,19 +501,37 @@
 	$('#result').on('click', '.item-edit', function(){
 		var id = $(this).attr('data');
 		$('#myModal').modal('show');
-		$('#myModal').find('.modal-title').text('Edit Department');
-		$('#myForm').attr('action', '<?php echo base_url() ?>Contract/updateDepartment');
+		$('#myModal').find('.modal-title').text('Edit Contract');
+		$('#myForm').attr('action', '<?php echo base_url() ?>Contract/updateContract');
 		$.ajax({
 			type: 'ajax',
 			method: 'get',
-			url: '<?php echo base_url() ?>Contract/editDepartment',
+			url: '<?php echo base_url() ?>Contract/editContract',
 			data: {id: id},
 			async: false,
 			dataType: 'json',
 			success: function(data){
-				$('input[name=departmentName]').val(data.d_name);
-				$('select[name=txtlocation]').val(data.d_loc_id);
-				$('input[name=txtId]').val(data.d_id);
+				$('select[name=txtlocation]').val(data.leg_loc_id);
+				$('select[name=txtregist]').val(data.leg_reg_type);
+				$('input[name=txtmodification]').val(data.leg_modif_contract);
+				$('select[name=txttax]').val(data.leg_taxs);
+				$('select[name=comreg]').val(data.leg_comm_reg);
+				$('select[name=vat]').val(data.leg_vat);
+				$('input[name=vatno]').val(data.leg_vat_no);
+				$('select[name=follower]').val(data.leg_follower);
+				$('select[name=licencestatus]').val(data.leg_license_status);
+				$('input[name=rental_start_date]').val(data.leg_start_rent_date);
+				$('input[name=rental_end_date]').val(data.leg_end_rant_date);
+				$('input[name=rent_cost]').val(data.leg_rent_price);
+				$('select[name=elect]').val(data.leg_elect_status);
+				$('input[name=realestatetax]').val(data.leg_reales_taxs);
+				$('select[name=copy]').val(data.leg_contract_copy);
+				$('input[name=branch_number]').val(data.leg_branch_no);
+				$('input[name=owner_name]').val(data.leg_owner_name);
+				$('input[name=owner_number]').val(data.leg_owner_number);
+				$('textarea[name=note]').val(data.leg_observation);
+
+				$('input[name=txtId]').val(data.leg_id);
 				$('.selectpicker').selectpicker('refresh');
 			},
 			error: function(){
@@ -533,7 +552,7 @@
 					type: 'ajax',
 					method: 'get',
 					async: false,
-					url: '<?php echo base_url() ?>Contract/deleteDepartment',
+					url: '<?php echo base_url() ?>Contract/deleteContract',
 					data:{id:id},
 					dataType: 'json',
 					success: function(response){
