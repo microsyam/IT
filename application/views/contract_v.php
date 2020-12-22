@@ -97,7 +97,7 @@
 									<div class="col-md-8">
 										<select class="selectpicker" required data-show-subtext="true" data-live-search="true" name="txttax" id="txttax">
 											<option value="Added">Added</option>
-											<option value="Not">Not Added</option>
+											<option value="Not Added">Not Added</option>
 										</select>
 									</div>
 								</div>
@@ -107,7 +107,7 @@
 									<div class="col-md-8">
 										<select class="selectpicker" required data-show-subtext="true" data-live-search="true" name="comreg" id="comreg">
 											<option value="Added">Added</option>
-											<option value="Not">Not Added</option>
+											<option value="Not Added">Not Added</option>
 										</select>
 									</div>
 								</div>
@@ -116,15 +116,15 @@
 									<label for="vat"  class="label-control col-md-4">VAT Registration</label>
 									<div class="col-md-8">
 										<select class="selectpicker" required data-show-subtext="true" data-live-search="true" name="vat" id="vat">
+											<option selected value="No">No</option>
 											<option value="Yes">Yes</option>
-											<option value="No">No</option>
 										</select>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group" id="vatno">
 									<label for="vatno"  class="label-control col-md-4">VAT NO</label>
 									<div class="col-md-8">
-										<input type="text" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="vatno" class="form-control">
+										<input type="text" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="vatno"  class="form-control">
 									</div>
 								</div>
 
@@ -264,13 +264,16 @@
 					<div class="input-group">
 
 						<span class="input-group-addon">Search</span>
-						<input type="text" name="search_text" id="search_text" placeholder="Search by Location" class="form-control" />
+						<input type="text" name="search_text" id="search_text" placeholder="Search" class="form-control" />
 						<select  class="selectpicker" required data-show-subtext="true" data-live-search="true" name="filter">
 							<option value="brancha">Branch Name</option>
 							<option value="owner">owner</option>
 						</select>
 					</div>
 				</div>
+
+
+
 				<br />
 				<div id="result"></div>
 			</div>
@@ -576,8 +579,6 @@
 		});
 	});
 </script>
-
-
 
 <!-- jQuery -->
 <script src="<?php echo base_url();?>vendor/jquery/jquery.min.js"></script>

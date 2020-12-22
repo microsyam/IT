@@ -45,7 +45,7 @@ Class Contract extends CI_Controller{
 		$data = $this->m->fetch_data($query,$filter);
 		$output .= '
 		<div class="table-responsive">
-					<table class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped" style="text-align: center; ">
 						<tr>
 							<th>Location</th>
 							<th>Registration</th>
@@ -71,8 +71,20 @@ Class Contract extends CI_Controller{
 		';
 		if($data->num_rows() > 0)
 		{
+			$vat='';
 			foreach($data->result() as $row)
 			{
+			if($row->leg_vat=="Yes")	{
+				$vat='
+				<td>'.$row->leg_vat.'</td>
+				<td>'.$row->leg_vat_no.'</td>
+				';
+			}else{
+				$vat='
+				<td colspan="2">'.$row->leg_vat.'</td>
+				';
+			}
+
 				$output .= '
 						<tr>
 							<td>'.$row->loc_name.'</td>
@@ -80,8 +92,7 @@ Class Contract extends CI_Controller{
 							<td>'.$row->leg_modif_contract.'</td>
 							<td>'.$row->leg_taxs.'</td>
 							<td>'.$row->leg_comm_reg.'</td>
-							<td>'.$row->leg_vat.'</td>
-							<td>'.$row->leg_vat_no.'</td>
+							'.$vat.'
 							<td>'.$row->u_name.'</td>
 							<td>'.$row->leg_license_status.'</td>
 							<td>'.$row->leg_start_rent_date.'</td>
@@ -104,7 +115,7 @@ Class Contract extends CI_Controller{
 		else
 		{
 			$output .= '<tr>
-							<td colspan="3">No Data Found</td>
+							<td colspan="19">No Data Found</td>
 						</tr>';
 		}
 		$output .= '</table>';
