@@ -28,6 +28,7 @@ Class Contract extends CI_Controller{
 			'userdata'=>$this->user->userdata(),
 			'locations'=>$this->m->getLocations(),
 			'get_users'=>$this->m->getUsers(),
+			'rws'=>$this->m->countContracts()
 		));
 
 }

@@ -54,6 +54,52 @@
 			</div>
 			<div class="alert alert-success" style="display: none;">
 			</div>
+
+
+			<!-- Button trigger modal -->
+
+
+<!--				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">Summary</button>
+-->
+
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Summary</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							Total locations : <?php echo count($locations);?><br>
+							Total Contracts : <?php echo $rws[0]['Alla'];?><br>
+							Agents : <?php echo $rws[0]['Agents'];?><br>
+							Companies : <?php echo $rws[0]['Companies'];?><br>
+							Shared : <?php echo $rws[0]['Shared'];?><br>
+							Added Tax : <?php echo $rws[0]['Added_tax'];?> <br>
+							Not Tax : <?php echo $rws[0]['Not_tax'];?> <br>
+							Added VAT : <?php echo $rws[0]['Yes_Vat'];?> <br>
+							Not Added : <?php echo $rws[0]['No_Vat'];?> <br>
+							Required Licenses : <?php echo $rws[0]['lic_required'];?> <br>
+							In Progress License : <?php echo $rws[0]['lic_inprogress'];?> <br>
+							Completed License : <?php echo $rws[0]['lic_comp'];?> <br>
+							OnHold Contracts Copy : <?php echo $rws[0]['contract_onhold'];?> <br>
+							Completed Contracts Copy : <?php echo $rws[0]['contract_done'];?> <br>
+							Practicing Electricity : <?php echo $rws[0]['elect_prac'];?> <br>
+							Standard Meter Electricity :  <?php echo $rws[0]['elect_done'];?> <br>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END Modal -->
+
 			<div id="myModal" class="modal fade" tabindex="-1" role="dialog"><!-- modal -->
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -256,6 +302,8 @@
 				<div class="form-group">
 
 					<button id="btnAdd" class="btn btn-success">Add New</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">Summary</button>
+
 
 
 
