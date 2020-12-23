@@ -18,7 +18,7 @@ Class Contract extends CI_Controller{
 
 	function index(){
 		$perm=$this->user->get_permisstion();
-		if($perm[0]['p_departments']!=1){
+		if($perm[0]['p_contract']!=1){
 			redirect('NotAuth','refresh');
 			die();
 		}

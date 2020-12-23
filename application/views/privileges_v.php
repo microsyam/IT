@@ -203,7 +203,21 @@
 					</div>
 				  </div>
 				</div> <!--  End -->
-				
+						<div class="panel panel-default">
+							<div class="panel-heading">Legal Affair</div>
+							<div class="panel-body">
+								<div class="col-sm-9 nopadding"  style="padding-left:25%;">
+									<li class="list-group-item">
+										Contracts
+										<div class="material-switch pull-right">
+											<input id="contract" name="contract" value="1" <?php if ($pri[0]['p_contract']==1){echo "checked";}?> type="checkbox"/>
+											<label for="contract" class="label-primary"></label>
+										</div>
+									</li>
+
+								</div>
+							</div>
+						</div> <!--  End -->
 				
 				<div class="panel panel-default">
 				  <div class="panel-heading">System Settings</div>
@@ -294,10 +308,9 @@
 				<br>
 				</div>
 				<?php endif;?>
-				</br>
+				<br>
 				
 				<?php echo form_close();?>
-                <div class="panel-footer"> <small></small></div>
 				
             </div>
                     </div>
