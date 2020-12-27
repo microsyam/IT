@@ -276,6 +276,13 @@
                             <label for="locations" class="label-primary"></label>
                         </div>
                     </li>
+					  <li class="list-group-item">
+                         Manage Periods
+                        <div class="material-switch pull-right">
+                            <input id="period" name="period" value="1" <?php if ($pri[0]['p_period']==1){echo "checked";}?> type="checkbox"/>
+                            <label for="period" class="label-primary"></label>
+                        </div>
+                    </li>
 
 					  <li class="list-group-item">
                          Add/Remove Departments

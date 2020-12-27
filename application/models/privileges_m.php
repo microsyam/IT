@@ -63,6 +63,7 @@ class Privileges_m extends CI_Model{
 			'p_gift_redeem '=>$this->input->post('giftcards'),
 			'p_location'=>$this->input->post('locations'),
 			'p_contract'=>$this->input->post('contract'),
+			'p_period'=>$this->input->post('period'),
 			);
 
 		$this->db->where('p_u_id',$this->input->post('select_user'));

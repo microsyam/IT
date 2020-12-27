@@ -9,7 +9,7 @@ class periods_m extends CI_Model{
 
 		if($query != '')
 		{
-			$this->db->like('per_month', $query);
+			$this->db->like('per_name', $query);
 		}
 		$this->db->order_by('per_id', 'DESC');
 		return $this->db->get();

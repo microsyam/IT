@@ -166,7 +166,7 @@
 
 
 
-				<?php if ($priv[0]['p_add_user'] + $priv[0]['p_edit_user'] + $priv[0]['p_privilages'] + $priv[0]['p_departments'] + $priv[0]['p_general'] + $priv[0]['p_warehouses'] + $priv[0]['p_vendors'] + $priv[0]['p_op_class'] + $priv[0]['p_location'] !== 0): ?>
+				<?php if ($priv[0]['p_add_user'] + $priv[0]['p_edit_user'] + $priv[0]['p_privilages'] + $priv[0]['p_departments'] + $priv[0]['p_general'] + $priv[0]['p_warehouses'] + $priv[0]['p_vendors'] + $priv[0]['p_op_class'] + $priv[0]['p_location']+ $priv[0]['p_period'] !== 0): ?>
 
 					<li>
 						<a href="#"><i class="	glyphicon glyphicon-cog"></i>System Settings<span
@@ -191,6 +191,12 @@
 							<?php if ($priv[0]['p_location'] == 1): ?>
 								<li>
 									<a href="<?php echo base_url(); ?>Locations">Locations</a>
+								</li>
+							<?php endif; ?>
+
+							<?php if ($priv[0]['p_period'] == 1): ?>
+								<li>
+									<a href="<?php echo base_url(); ?>Periods">Periods</a>
 								</li>
 							<?php endif; ?>
 							<?php if ($priv[0]['p_warehouses'] == 1): ?>
