@@ -121,21 +121,14 @@
 				
 				
 				<div class="panel panel-default">
-				  <div class="panel-heading">Employees</div>
+				  <div class="panel-heading">Accounts</div>
 				  <div class="panel-body">
 				  <div class="col-sm-9 nopadding"  style="padding-left:25%;">
 				  <li class="list-group-item">
-                        New Employee
+                        Accounts
                         <div class="material-switch pull-right">
-                            <input id="addemp" name="addemp" value="1" <?php if ($pri[0]['p_new_emp']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="addemp" class="label-primary"></label>
-                        </div>
-                    </li>
-					<li class="list-group-item">
-                        Edit Employee
-                        <div class="material-switch pull-right">
-                            <input id="editemp" name="editemp" value="1" <?php if ($pri[0]['p_edit_emp']==1){echo "checked";}?> type="checkbox"/>
-                            <label for="editemp" class="label-primary"></label>
+                            <input id="accounts" name="accounts" value="1" <?php if ($pri[0]['p_accounts']==1){echo "checked";}?> type="checkbox"/>
+                            <label for="accounts" class="label-primary"></label>
                         </div>
                     </li>
 					<li class="list-group-item">
