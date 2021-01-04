@@ -17,7 +17,24 @@ class contract_m extends CI_Model{
 			}
 		}
 		$this->db->order_by('leg_id', 'DESC');
-		return $this->db->get();
+		return $this->db->get()->result_array();
+	}
+
+	function count_all($query,$filter){ // count for pagination
+		$this->db->select('*');
+		$this->db->from('legal');
+		$this->db->join('locations','locations.loc_id=legal.leg_loc_id');
+		$this->db->join('users','users.u_id=legal.leg_follower');
+
+		if($query != '')
+		{
+			if($filter=='brancha'){
+				$this->db->like('loc_name', $query);
+			}elseif ($filter=='owner'){
+				$this->db->like('leg_owner_name', $query);
+			}
+		}
+		 return $this->db->get()->num_rows();
 	}
 	function getLocations(){
 		$this->db->select('*');
@@ -51,7 +68,6 @@ class contract_m extends CI_Model{
 				'leg_elect_status'=>$this->input->post('elect'),
 				'leg_reales_taxs'=>$this->input->post('realestatetax'),
 				'leg_contract_copy'=>$this->input->post('copy'),
-				'leg_branch_no'=>$this->input->post('branch_number'),
 				'leg_owner_name'=>$this->input->post('owner_name'),
 				'leg_owner_number'=>$this->input->post('owner_number'),
 				'leg_observation'=>$this->input->post('note'),
@@ -93,7 +109,6 @@ class contract_m extends CI_Model{
 				'leg_elect_status'=>$this->input->post('elect'),
 				'leg_reales_taxs'=>$this->input->post('realestatetax'),
 				'leg_contract_copy'=>$this->input->post('copy'),
-				'leg_branch_no'=>$this->input->post('branch_number'),
 				'leg_owner_name'=>$this->input->post('owner_name'),
 				'leg_owner_number'=>$this->input->post('owner_number'),
 				'leg_observation'=>$this->input->post('note'),
@@ -119,12 +134,6 @@ class contract_m extends CI_Model{
 		}
 
 		function countContracts(){
-
-			/*$this->db->select('*');
-			$this->db->from('legal');
-			$data=$this->db->get();
-			return $data->result_array();*/
-
 			$this->db->select("
     COUNT(*) AS Alla,
     COUNT(CASE WHEN `leg_reg_type` LIKE '%Agent%' THEN 1 END) AS Agents,

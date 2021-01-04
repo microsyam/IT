@@ -18,12 +18,6 @@
 	<!-- MetisMenu CSS -->
 	<link href="<?php echo base_url();?>vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-	<!-- DataTables CSS -->
-	<link href="<?php echo base_url();?>vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
-	<!-- DataTables Responsive CSS -->
-	<link href="<?php echo base_url();?>vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
 	<!-- Custom CSS -->
 	<link href="<?php echo base_url();?>dist/css/sb-admin-2.css" rel="stylesheet">
 
@@ -32,7 +26,7 @@
 
 	<script src="<?php echo base_url();?>js/jquery.min.js.download"></script>
 
-	<!--<script src="<?php /*echo base_url();*/?>js/0a3b9034e109d88d72f83c9e6c9d13b7.js.download"></script>-->
+	<script src="<?php echo base_url();?>js/0a3b9034e109d88d72f83c9e6c9d13b7.js.download"></script>
 
 	<link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap-select.min.css" />
 
@@ -237,6 +231,12 @@
 										</select>
 									</div>
 								</div>
+								<div class="form-group">
+									<label for="branch_number"  class="label-control col-md-4">Branch Number</label>
+									<div class="col-md-8">
+										<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required name="branch_number" class="form-control">
+									</div>
+								</div>
 
 								<div class="form-group">
 									<label for="owner_name"  class="label-control col-md-4">Owner Name</label>
@@ -260,15 +260,15 @@
 								</div>
 
 
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 			<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -313,48 +313,9 @@
 
 
 				<br />
-					<!--Here ISA-->
-				<!-- Posts List -->
-
-				<table class="table table-bordered table-striped" id='postsList'>
-
-					<thead>
-
-					<tr>
-
-						<th>Location</th>
-						<th>Registration</th>
-						<th>Modification</th>
-						<th>TAX</th>
-						<th>Commercial Registry</th>
-						<th>VAT</th>
-						<th>VAT NO</th>
-						<th>Follower</th>
-						<th>License Status</th>
-						<th>Start.R.Date</th>
-						<th>End.R.Date</th>
-						<th>Rental Cost</th>
-						<th>ELECT Status</th>
-						<th>R.E TAX</th>
-						<th>Contract Copy</th>
-						<th>Branch Number</th>
-						<th>Owner Name</th>
-						<th>Owner Number</th>
-						<th>Action</th>
-
-					</tr>
-
-					</thead>
-
-					<tbody></tbody>
-
-				</table>
-
-
-
-				<!-- Paginate -->
-
-				<div id='pagination'></div>
+				<div id="result"></div>
+			</div>
+			<div style="clear:both"></div>
 			<br />
 			<br />
 			<br />
@@ -371,117 +332,35 @@
 </div>
 <!-- /#wrapper -->
 
-	<script type='text/javascript'>
-
-		$(document).ready(function(){
-			load_data();
-			function load_data(search,filter){
-
-			$('#pagination').on('click','a',function(e){
-				e.preventDefault();
-				var pageno = $(this).attr('data-ci-pagination-page');
-				loadPagination(pageno);
-			});
-			loadPagination(0);
-			function loadPagination(pagno){
-				$.ajax({
-					url: '<?php echo base_url();?>Contract/fetch/'+pagno,
-					type: 'POST',
-					data:{query:search,filter:filter},
-					dataType: 'json',
-					success: function(response){
-						$('#pagination').html(response.pagination);
-						createTable(response.result,response.row);
-					}
-				});
-			}
-
-			function createTable(result,sno){
-				sno = Number(sno);
-				$('#postsList tbody').empty();
-				for(index in result){
-					var locationName = result[index].loc_name;
-					var regType = result[index].leg_reg_type;
-					var Modifaction = result[index].leg_modif_contract;
-					var TAX = result[index].leg_taxs;
-					var comRegs = result[index].leg_comm_reg;
-					var vatst =result[index].leg_vat;
-					var vatno=result[index].leg_vat_no;
-					if ( vatst ==="Yes"){
-						var vat="<td>"+ vatst +"</td>";
-						vat +="<td>"+ vatno +"</td>";
-					}else{
-						vat="<td colspan=2 >"+ vatst +"</td>";
-					}
-
-					var follower=result[index].u_name;
-					var licStatus=result[index].leg_license_status;
-					var rentStartDate=result[index].leg_start_rent_date;
-					var rentEndDate=result[index].leg_end_rant_date;
-					var rentPrice=result[index].leg_rent_price;
-					var elecStatus=result[index].leg_elect_status;
-					var realEstateTax=result[index].leg_reales_taxs;
-					var contractCopy=result[index].leg_contract_copy;
-					var LocationNumber=result[index].loc_number;
-					var ownerName=result[index].leg_owner_name;
-					var ownerNumber=result[index].leg_owner_number;
-
-
-
-					var id = result[index].leg_id;
-					/*content = content.substr(0, 60) + " ...";*/
-					var link = result[index].slug;
-					sno+=1;
-					var tr = "<tr>";
-					tr += "<td>"+ locationName +"</td>";
-					tr += "<td>"+ regType +"</td>";
-					tr += "<td>"+ Modifaction +"</td>";
-					tr += "<td>"+ TAX +"</td>";
-					tr += "<td>"+ comRegs +"</td>";
-					tr += vat;
-					tr += "<td>"+ follower +"</td>";
-					tr += "<td>"+ licStatus +"</td>";
-					tr += "<td>"+ rentStartDate +"</td>";
-					tr += "<td>"+ rentEndDate +"</td>";
-					tr += "<td>"+ rentPrice +"</td>";
-					tr += "<td>"+ elecStatus +"</td>";
-					tr += "<td>"+ realEstateTax +"</td>";
-					tr += "<td>"+ contractCopy +"</td>";
-					tr += "<td>"+ LocationNumber +"</td>";
-					tr += "<td>"+ ownerName +"</td>";
-					tr += "<td>"+ ownerNumber +"</td>";
-
-
-
-					tr += "<td>";
-					tr += "<a href='javascript:;' class='btn btn-info item-edit' data='"+id+"'>Edit</a>";
-					tr += "<a href='javascript:;' class='btn btn-danger item-delete' data='"+id+"'>Delete</a></td>";
-
-					tr += "</tr>";
-					$('#postsList tbody').append(tr);
-				}
-			}
-			}
-
-				$('#search_text').keyup(function(){
-					var search = $(this).val();
-					var filter = $('select[name=filter]').val();
-					if(search != '')
-					{
-						load_data(search,filter);
-					}
-					else
-					{
-						load_data();
-					}
-				});
-
-		});
-
-	</script>
 
 <script>
 	$(function(){
+
+		load_data();
+		function load_data(query,filter)
+		{
+			$.ajax({
+				url:"<?php echo base_url(); ?>Contract/fetch",
+				method:"POST",
+				data:{query:query,filter:filter},
+				success:function(data){
+					$('#result').html(data);
+				}
+			})
+		}
+
+		$('#search_text').keyup(function(){
+			var search = $(this).val();
+			var filter = $('select[name=filter]').val();
+			if(search != '')
+			{
+				load_data(search,filter);
+			}
+			else
+			{
+				load_data();
+			}
+		});
 
 		$('#btnAdd').click(function(){
 			$('#myModal').modal('show');
@@ -507,6 +386,7 @@
 			var elect = $('select[name=elect]');
 			var realesttax = $('input[name=realestatetax]');
 			var copy = $('select[name=copy]');
+			var branchno = $('input[name=branch_number]');
 			var ownername = $('input[name=owner_name]');
 			var ownerno = $('input[name=owner_number]');
 			var note = $('textarea[name=note]');
@@ -661,54 +541,54 @@
 
 
 
-		//Edit
+	//Edit
 
-		$('#postsList').on('click', '.item-edit', function(){
-			var id = $(this).attr('data');
-			$('#myModal').modal('show');
-			$('#myModal').find('.modal-title').text('Edit Contract');
-			$('#myForm').attr('action', '<?php echo base_url() ?>Contract/updateContract');
-			$.ajax({
-				type: 'ajax',
-				method: 'get',
-				url: '<?php echo base_url() ?>Contract/editContract',
-				data: {id: id},
-				async: false,
-				dataType: 'json',
-				success: function(data){
-					$('select[name=txtlocation]').val(data.leg_loc_id);
-					$('select[name=txtregist]').val(data.leg_reg_type);
-					$('input[name=txtmodification]').val(data.leg_modif_contract);
-					$('select[name=txttax]').val(data.leg_taxs);
-					$('select[name=comreg]').val(data.leg_comm_reg);
-					$('select[name=vat]').val(data.leg_vat);
-					$('input[name=vatno]').val(data.leg_vat_no);
-					$('select[name=follower]').val(data.leg_follower);
-					$('select[name=licencestatus]').val(data.leg_license_status);
-					$('input[name=rental_start_date]').val(data.leg_start_rent_date);
-					$('input[name=rental_end_date]').val(data.leg_end_rant_date);
-					$('input[name=rent_cost]').val(data.leg_rent_price);
-					$('select[name=elect]').val(data.leg_elect_status);
-					$('input[name=realestatetax]').val(data.leg_reales_taxs);
-					$('select[name=copy]').val(data.leg_contract_copy);
-					$('input[name=branch_number]').val(data.leg_branch_no);
-					$('input[name=owner_name]').val(data.leg_owner_name);
-					$('input[name=owner_number]').val(data.leg_owner_number);
-					$('textarea[name=note]').val(data.leg_observation);
+	$('#result').on('click', '.item-edit', function(){
+		var id = $(this).attr('data');
+		$('#myModal').modal('show');
+		$('#myModal').find('.modal-title').text('Edit Contract');
+		$('#myForm').attr('action', '<?php echo base_url() ?>Contract/updateContract');
+		$.ajax({
+			type: 'ajax',
+			method: 'get',
+			url: '<?php echo base_url() ?>Contract/editContract',
+			data: {id: id},
+			async: false,
+			dataType: 'json',
+			success: function(data){
+				$('select[name=txtlocation]').val(data.leg_loc_id);
+				$('select[name=txtregist]').val(data.leg_reg_type);
+				$('input[name=txtmodification]').val(data.leg_modif_contract);
+				$('select[name=txttax]').val(data.leg_taxs);
+				$('select[name=comreg]').val(data.leg_comm_reg);
+				$('select[name=vat]').val(data.leg_vat);
+				$('input[name=vatno]').val(data.leg_vat_no);
+				$('select[name=follower]').val(data.leg_follower);
+				$('select[name=licencestatus]').val(data.leg_license_status);
+				$('input[name=rental_start_date]').val(data.leg_start_rent_date);
+				$('input[name=rental_end_date]').val(data.leg_end_rant_date);
+				$('input[name=rent_cost]').val(data.leg_rent_price);
+				$('select[name=elect]').val(data.leg_elect_status);
+				$('input[name=realestatetax]').val(data.leg_reales_taxs);
+				$('select[name=copy]').val(data.leg_contract_copy);
+				$('input[name=branch_number]').val(data.leg_branch_no);
+				$('input[name=owner_name]').val(data.leg_owner_name);
+				$('input[name=owner_number]').val(data.leg_owner_number);
+				$('textarea[name=note]').val(data.leg_observation);
 
-					$('input[name=txtId]').val(data.leg_id);
-					$('.selectpicker').selectpicker('refresh');
-				},
-				error: function(){
-					alert('Could not Edit Data');
-				}
-			});
+				$('input[name=txtId]').val(data.leg_id);
+				$('.selectpicker').selectpicker('refresh');
+			},
+			error: function(){
+				alert('Could not Edit Data');
+			}
 		});
+	});
 
-		//delete
+	//delete
 
-		//delete-
-		$('#postsList').on('click', '.item-delete', function(){
+	//delete-
+		$('#result').on('click', '.item-delete', function(){
 			var id = $(this).attr('data');
 			$('#deleteModal').modal('show');
 			//prevent previous handler - unbind()
@@ -738,12 +618,25 @@
 	});
 </script>
 
+<!-- DataTables JavaScript -->
+<script src="<?php echo base_url();?>vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+	$(document).ready( function () {
+		$('#dataTables-example').DataTable();
+	} );
 
+</script>
 
 <!-- jQuery -->
 <script src="<?php echo base_url();?>vendor/jquery/jquery.min.js"></script>
+
+<script src="<?php echo base_url();?>js/bootstrap-select.min.js"></script>
+
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url();?>vendor/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- Metis Menu Plugin JavaScript -->
 <script src="<?php echo base_url();?>vendor/metisMenu/metisMenu.min.js"></script>
 
@@ -751,7 +644,6 @@
 <script src="<?php echo base_url();?>dist/js/sb-admin-2.js"></script>
 
 
-<script src="<?php echo base_url();?>js/bootstrap-select.min.js"></script>
 
 </body>
 

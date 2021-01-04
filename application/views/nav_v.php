@@ -48,7 +48,7 @@
 				<?php if ($priv[0]['p_view_computers'] + $priv[0]['p_add_computer'] + $priv[0]['p_edit_computer'] !== 0): ?>
 					<!--Start-->
 					<li>
-						<a href="#"><i class="fa fa fa-desktop"></i> Computers<span class="fa arrow"></span></a>
+						<a href="#"><i class="fa fa fa-desktop"></i> IT<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<?php if ($priv[0]['p_view_computers'] == 1): ?>
 								<li>

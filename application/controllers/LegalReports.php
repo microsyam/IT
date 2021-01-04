@@ -1,11 +1,11 @@
 <?php
-Class Contract extends CI_Controller{
+Class LegalReports extends CI_Controller{
 
 	public function __construct()
 	{
 		parent::__construct();
 		if($this->session->userdata('logged_in')){
-			$this->load->model('contract_m','m');
+			$this->load->model('legalReports_m','m');
 			$this->load->model('user');
 			$this->load->library('pagination');
 		}
@@ -24,7 +24,7 @@ Class Contract extends CI_Controller{
 			die();
 		}
 
-		$this->load->view('contract_v',array(
+		$this->load->view('LegalReport_v',array(
 			'priv'=>$this->user->get_permisstion(),
 			'userdata'=>$this->user->userdata(),
 			'locations'=>$this->m->getLocations(),
@@ -36,13 +36,11 @@ Class Contract extends CI_Controller{
 
 	function fetch($rowno=0)
 	{
-		$query="";
-		$filter="";
+		$user="";
 
-		if($this->input->post('query'))
+		if($this->input->post('user'))
 		{
-			$query = $this->input->post('query');
-			$filter = $this->input->post('filter');
+			$user = $this->input->post('user');
 		}
 		$rowperpage = 5;
 		if($rowno != 0){
@@ -50,10 +48,10 @@ Class Contract extends CI_Controller{
 			$rowno = ($rowno-1) * $rowperpage;
 
 		}
-		$allcount = $this->m->count_all($query,$filter);
+		$allcount = $this->m->count_all($user);
 		$this->db->limit($rowperpage, $rowno);
-		$users_record = $this->m->fetch_data($query,$filter);
-		$config['base_url'] = base_url().'Contract/fetch';
+		$users_record = $this->m->fetch_data($user);
+		$config['base_url'] = base_url().'LegalReports/fetch';
 		$config['use_page_numbers'] = TRUE;
 		$config['total_rows'] = $allcount;
 		$config['per_page'] = $rowperpage;
@@ -74,41 +72,8 @@ Class Contract extends CI_Controller{
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
 		$data['result'] = $users_record;
+
 		$data['row'] = $rowno;
-		echo json_encode($data);
-	}
-
-	public function addContract(){
-		$result = $this->m->addContract();
-		$msg['success'] = false;
-		$msg['type'] = 'add';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
-	}
-
-	public function editContract(){
-		$result = $this->m->editContract();
-		echo json_encode($result);
-	}
-
-	public function updateContract(){
-		$result = $this->m->updateContract();
-		$msg['success'] = false;
-		$msg['type'] = 'update';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
-	}
-
-	public function deleteContract(){
-		$result = $this->m->deleteContract();
-		$msg['success'] = false;
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
+		echo json_encode($data,$allcount);
 	}
 }
