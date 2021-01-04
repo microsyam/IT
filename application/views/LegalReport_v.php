@@ -56,10 +56,10 @@
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
-			<div class="alert alert-success" style="display: none;">
-			</div>
-			<div class="container" style="width:100%">
 
+			<div class="container">
+				<div class="alert alert-success" style="display: none;">
+				</div>
 				<div class="form-group">
 
 					<div class="input-group">
@@ -135,14 +135,14 @@
 					dataType: 'json',
 					success: function(response){
 						$('#pagination').html(response.pagination);
-						createTable(response.result,response.row);
+						createTable(response.result,response.row,response.counta);
 					}
 				});
 			}
 
-			function createTable(result,sno,user_rows){
+			function createTable(result,sno,counta){
 				sno = Number(sno);
-				alert(Number(user_rows));
+				 allcounts=Number(counta);
 				$('#postsList tbody').empty();
 				for(index in result){
 					var locationName = result[index].loc_name;
@@ -158,11 +158,11 @@
 					$('#postsList tbody').append(tr);
 				}
 
-				$('.alert-success').html('Total Contracts is : ' ).show();
+				$('.alert-success').html('Total Contracts is : '+allcounts ).show();
 			}
 			}
 
-				$('#user').on('change',function(){
+				$('#user').change(function(){
 					var user = $('select[name=user]').val();
 					if(user != '')
 					{

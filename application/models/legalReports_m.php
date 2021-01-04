@@ -9,9 +9,8 @@ class legalReports_m extends CI_Model{
 		$this->db->join('users','users.u_id=legal.leg_follower');
 
 		if($user!=''){
-			if($this->input->post('user')){
 				$this->db->like('u_id',$user);
-			}
+
 		}
 		return $this->db->get()->result_array();
 	}
@@ -23,9 +22,8 @@ class legalReports_m extends CI_Model{
 		$this->db->join('users','users.u_id=legal.leg_follower');
 
 		if($user!=''){
-			if($this->input->post('user')){
 				$this->db->like('u_id',$user);
-			}
+
 		}
 		 return $this->db->get()->num_rows();
 	}
