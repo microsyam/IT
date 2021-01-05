@@ -64,7 +64,7 @@
 
 					<div class="input-group">
 						<select  class="selectpicker" required data-show-subtext="true" data-live-search="true" id="user" name="user">
-							<option value="">Select User</option>
+							<option>Select User</option>
 							<?php foreach ($get_users as $row):?>
 							<option value="<?php echo $row->u_id;?>"><?php echo $row->u_name;?></option>
 							<?php endforeach;?>
