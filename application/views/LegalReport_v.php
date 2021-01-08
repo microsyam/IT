@@ -63,12 +63,14 @@
 				<div class="form-group">
 
 					<div class="input-group">
+						<input type="hidden" name="txtId" value="0">
 						<select  class="selectpicker" required data-show-subtext="true" data-live-search="true" id="user" name="user">
-							<option>Select User</option>
+							<option value="0">Select User</option>
 							<?php foreach ($get_users as $row):?>
 							<option value="<?php echo $row->u_id;?>"><?php echo $row->u_name;?></option>
 							<?php endforeach;?>
 						</select>
+
 					</div>
 				</div>
 
@@ -163,12 +165,13 @@
 			}
 
 				$('#user').change(function(){
-					var user = $('select[name=user]').val();
-					if(user != '')
+					var user1 = $('select[name=user]').val();
+					$('input[name=txtId]').val(user1);
+					user=$('input[name=txtId]').val();
+					if(user !=0)
 					{
 						load_data(user);
-					}
-					else
+					}else
 					{
 						load_data();
 					}

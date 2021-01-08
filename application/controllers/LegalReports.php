@@ -72,7 +72,7 @@ Class LegalReports extends CI_Controller{
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
 		$data['result'] = $users_record;
-		$data['counta'] = $allcount;
+		$data['counta'] = $allcount; // count of row numbers
 		$data['row'] = $rowno;
 		echo json_encode($data);
 	}

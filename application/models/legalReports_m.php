@@ -8,7 +8,7 @@ class legalReports_m extends CI_Model{
 		$this->db->join('locations','locations.loc_id=legal.leg_loc_id');
 		$this->db->join('users','users.u_id=legal.leg_follower');
 
-		if($user!=''){
+		if($user!="0"){
 				$this->db->like('u_id',$user);
 
 		}
@@ -21,7 +21,7 @@ class legalReports_m extends CI_Model{
 		$this->db->join('locations','locations.loc_id=legal.leg_loc_id');
 		$this->db->join('users','users.u_id=legal.leg_follower');
 
-		if($user!=''){
+		if($user!="0"){
 				$this->db->like('u_id',$user);
 
 		}
