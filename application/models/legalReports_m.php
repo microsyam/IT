@@ -1,17 +1,18 @@
 <?php
 class legalReports_m extends CI_Model{
 
-	function fetch_data($user)
+	function fetch_data($user,$rowperpage, $rowno)
 	{
 		$this->db->select('*');
 		$this->db->from('legal');
 		$this->db->join('locations','locations.loc_id=legal.leg_loc_id');
 		$this->db->join('users','users.u_id=legal.leg_follower');
 
-		if($user!="0"){
-				$this->db->like('u_id',$user);
+		if($user!=0){
+				$this->db->where('leg_follower',$user);
 
 		}
+		$this->db->limit($rowperpage, $rowno);
 		return $this->db->get()->result_array();
 	}
 
@@ -21,8 +22,8 @@ class legalReports_m extends CI_Model{
 		$this->db->join('locations','locations.loc_id=legal.leg_loc_id');
 		$this->db->join('users','users.u_id=legal.leg_follower');
 
-		if($user!="0"){
-				$this->db->like('u_id',$user);
+		if($user!=0){
+				$this->db->where('leg_follower',$user);
 
 		}
 		 return $this->db->get()->num_rows();

@@ -64,13 +64,12 @@
 
 					<div class="input-group">
 						<input type="hidden" name="txtId" value="0">
-						<select  class="selectpicker" required data-show-subtext="true" data-live-search="true" id="user" name="user">
+						<select  class="selectpicker" required data-show-subtext="true" data-live-search="true" id="user" name="userlist">
 							<option value="0">Select User</option>
 							<?php foreach ($get_users as $row):?>
 							<option value="<?php echo $row->u_id;?>"><?php echo $row->u_name;?></option>
 							<?php endforeach;?>
 						</select>
-
 					</div>
 				</div>
 
@@ -118,9 +117,15 @@
 <!-- /#wrapper -->
 
 	<script type='text/javascript'>
-
 		$(document).ready(function(){
-			load_data();
+			var user = $('input[name=txtId]').val();
+			load_data(user);
+			$('#user').change(function(){
+				user1 = $('select[name=userlist]').val();
+				$('input[name=txtId]').val(user1);
+				user=$('input[name=txtId]').val();
+				load_data(user);
+			});
 			function load_data(user){
 
 			$('#pagination').on('click','a',function(e){
@@ -160,31 +165,16 @@
 					$('#postsList tbody').append(tr);
 				}
 
-				$('.alert-success').html('Total Contracts is : '+allcounts ).show();
+				$('.alert-success').html('Total : '+allcounts ).show();
 			}
 			}
-
-				$('#user').change(function(){
-					var user1 = $('select[name=user]').val();
-					$('input[name=txtId]').val(user1);
-					user=$('input[name=txtId]').val();
-					if(user !=0)
-					{
-						load_data(user);
-					}else
-					{
-						load_data();
-					}
-				});
 
 		});
 
 	</script>
 
-
-
-<!-- jQuery -->
-<script src="<?php echo base_url();?>vendor/jquery/jquery.min.js"></script>
+	<!-- jQuery -->
+	<script src="<?php echo base_url();?>vendor/jquery/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url();?>vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->

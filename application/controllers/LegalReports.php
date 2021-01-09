@@ -36,22 +36,23 @@ Class LegalReports extends CI_Controller{
 
 	function fetch($rowno=0)
 	{
-		$user='';
-
-		if($this->input->post('user'))
-		{
-			$user = $this->input->post('user');
+		$user="0";
+		/*$user=$this->uri->segment(4);*/
+		if($this->input->post('user')!=0){
+		$user = $this->input->post('user');
 		}
+			/*$user = $this->uri->segment(4);*/
+
 		$rowperpage = 5;
 		if($rowno != 0){
-
 			$rowno = ($rowno-1) * $rowperpage;
-
 		}
+
 		$allcount = $this->m->count_all($user);
-		$this->db->limit($rowperpage, $rowno);
-		$users_record = $this->m->fetch_data($user);
-		$config['base_url'] = base_url().'LegalReports/fetch';
+		/*$this->db->limit($rowperpage, $rowno);*/
+		$users_record = $this->m->fetch_data($user,$rowperpage, $rowno);
+
+		$config['base_url'] = base_url().'LegalReports/fetch/';
 		$config['use_page_numbers'] = TRUE;
 		$config['total_rows'] = $allcount;
 		$config['per_page'] = $rowperpage;
