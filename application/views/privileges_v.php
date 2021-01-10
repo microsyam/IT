@@ -207,6 +207,13 @@
 											<label for="contract" class="label-primary"></label>
 										</div>
 									</li>
+									<li class="list-group-item">
+										Reports
+										<div class="material-switch pull-right">
+											<input id="legalreports" name="legalreports" value="1" <?php if ($pri[0]['p_legal_reports']==1){echo "checked";}?> type="checkbox"/>
+											<label for="legalreports" class="label-primary"></label>
+										</div>
+									</li>
 
 								</div>
 							</div>

@@ -43,7 +43,7 @@ Class LegalReports extends CI_Controller{
 		}
 			/*$user = $this->uri->segment(4);*/
 
-		$rowperpage = 5;
+		$rowperpage = 100;
 		if($rowno != 0){
 			$rowno = ($rowno-1) * $rowperpage;
 		}

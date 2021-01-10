@@ -73,7 +73,7 @@
 
 				<?php endif; ?>
 
-				<?php if ($priv[0]['p_contract'] !== '0'): ?>
+				<?php if ($priv[0]['p_contract'] + $priv[0]['p_legal_reports'] !== '0'): ?>
 					<!--Start-->
 					<li>
 						<a href="#"><i class="fa fa fa-desktop"></i> Legal Affair<span class="fa arrow"></span></a>
@@ -81,6 +81,11 @@
 							<?php if ($priv[0]['p_contract'] == 1): ?>
 								<li>
 									<a href="<?php echo base_url(); ?>Contract">Contracts</a>
+								</li>
+							<?php endif; ?>
+							<?php if ($priv[0]['p_legal_reports'] == 1): ?>
+								<li>
+									<a href="<?php echo base_url(); ?>LegalReports">Report</a>
 								</li>
 							<?php endif; ?>
 						</ul>
